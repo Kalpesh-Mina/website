@@ -11,20 +11,23 @@ const PrivacyPolicy = () => {
     return (
         <div className="legal-page">
             {/* Hero */}
-            <div className="legal-hero">
+            <div className="legal-hero legal-hero-privacy">
                 <div className="legal-hero-content">
                     <Link to="/" className="legal-back-link" style={{ color: 'rgba(255,255,255,0.85)' }}>
                         <ArrowLeft size={18} /> Back to Home
                     </Link>
-                    <Shield size={48} className="legal-hero-icon" />
+                    <div className="delete-icon-circle">
+                        <Shield size={40} className="legal-hero-icon" />
+                    </div>
                     <h1>Privacy Policy</h1>
+                    <p className="delete-subtitle">How we protect and use your personal data</p>
                     <p className="legal-effective-date">Effective Date: February 19, 2026</p>
                 </div>
             </div>
 
             {/* Content */}
             <div className="legal-content">
-                <div className="legal-card">
+                <div className="legal-card legal-card-enhanced">
                     <p className="legal-intro">
                         At Health Grow, your privacy is our priority. This Privacy Policy explains how we collect,
                         use, store, and protect your personal information when you use our platform. By using
@@ -122,7 +125,7 @@ const PrivacyPolicy = () => {
                         <p>If you have any questions or concerns about this Privacy Policy, contact us:</p>
                         <div className="legal-contact-card">
                             <p><strong>Health Grow</strong></p>
-                            <p>Email: <a href="mailto:support@healthgrow.in">support@healthgrow.in</a></p>
+                            <p>Email: <a href="mailto:healthgrow.in@gmail.com">healthgrow.in@gmail.com</a></p>
                         </div>
                     </div>
 

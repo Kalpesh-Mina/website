@@ -160,6 +160,40 @@
     background: linear-gradient(135deg, var(--healthcare-blue), var(--healthcare-teal));
 }
 
+.legal-section ol {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0;
+    counter-reset: steps;
+}
+
+.legal-section ol li {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    counter-increment: steps;
+}
+
+.legal-section ol li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--healthcare-blue), var(--healthcare-teal));
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Contact Card */
 .legal-contact-card {
     margin-top: 1rem;
@@ -239,5 +273,311 @@
 
     .legal-section h2 {
         font-size: 1.15rem;
+    }
+}
+
+/* ===== DELETE ACCOUNT PAGE STYLES ===== */
+
+.delete-account-hero {
+    background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 50%, #0369A1 100%);
+}
+
+.legal-hero-privacy {
+    background: linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
+}
+
+.legal-hero-terms {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 50%, #3B82F6 100%);
+}
+
+.delete-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.delete-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.delete-account-card,
+.legal-card-enhanced {
+    box-shadow: 0 12px 48px rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(14, 165, 233, 0.12);
+}
+
+/* Warning Box */
+.delete-warning-box {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(249, 115, 22, 0.08) 100%);
+    border-left: 4px solid #EF4444;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.delete-warning-box svg {
+    color: #EF4444;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.delete-warning-box h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #DC2626;
+    margin-bottom: 0.5rem;
+}
+
+.delete-warning-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #7F1D1D;
+    margin: 0;
+}
+
+/* Steps Container */
+.delete-steps-container {
+    display: grid;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.delete-step-card {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.04) 0%, rgba(20, 184, 166, 0.04) 100%);
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    border-radius: 14px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.delete-step-card:hover {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%);
+    border-color: rgba(14, 165, 233, 0.2);
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.12);
+    transform: translateY(-2px);
+}
+
+.delete-step-number {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #0EA5E9, #14B8A6);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+
+.delete-step-icon {
+    grid-column: 1;
+    color: var(--healthcare-teal);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.delete-step-content {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.delete-step-content h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+}
+
+.delete-step-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Info Grid */
+.delete-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.delete-info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.06) 0%, rgba(14, 165, 233, 0.06) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(14, 165, 233, 0.08);
+    transition: all 0.3s ease;
+}
+
+.delete-info-item:hover {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(14, 165, 233, 0.12) 100%);
+    border-color: rgba(14, 165, 233, 0.15);
+}
+
+.delete-info-icon {
+    font-size: 1.5rem;
+    display: inline-block;
+    min-width: 32px;
+    text-align: center;
+}
+
+.delete-info-item span:last-child {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Support Box */
+.delete-support-box {
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(14, 165, 233, 0.15);
+}
+
+.delete-support-box p {
+    margin: 0 0 1.25rem;
+    font-size: 0.975rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.delete-contact-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    margin: 1.25rem 0;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.delete-contact-info svg {
+    color: var(--healthcare-blue);
+    flex-shrink: 0;
+}
+
+.delete-contact-info a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--healthcare-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.delete-contact-info a:hover {
+    color: var(--healthcare-teal-dark);
+    text-decoration: underline;
+}
+
+.delete-support-note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0 !important;
+}
+
+/* Final Note */
+.delete-final-note {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+    border-left: 4px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.delete-final-note p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #5F2120;
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .delete-step-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    .delete-step-icon {
+        grid-column: 1;
+        justify-content: flex-start;
+    }
+
+    .delete-step-content {
+        grid-column: 1;
+    }
+
+    .delete-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .delete-icon-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+    .delete-warning-box {
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .delete-support-box {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        left: 16px;
+    }
+
+    .delete-contact-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .legal-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .delete-subtitle {
+        font-size: 0.95rem;
     }
 }
