@@ -269,7 +269,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2026 Health Grow. All rights reserved. Made with ❤️ in India</p>
+            <p>© 2026 KP Ventures. All rights reserved. Made with ❤️ in India</p>
           </div>
         </div>
       </footer>

@@ -137,7 +137,7 @@ const PrivacyPolicy = () => {
 
             {/* Simple Footer */}
             <footer className="legal-footer">
-                © 2026 Health Grow. All rights reserved. Made with ❤️ in India
+                © 2026 KP Ventures. All rights reserved. Made with ❤️ in India
             </footer>
         </div>
     );
