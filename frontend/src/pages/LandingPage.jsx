@@ -80,9 +80,9 @@ const LandingPage = () => {
               <p className="hero-subtitle">
                 India ka apna smart healthcare management platform. Track medicines, monitor heart rate, and get AI insights—all in one place.
               </p>
-              <button onClick={scrollToGetStarted} className="btn-primary">
+              <a href="/health-grow.apk" download="health-grow.apk" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}>
                 Download Now
-              </button>
+              </a>
             </div>
             <div className="hero-image-container">
               <video
