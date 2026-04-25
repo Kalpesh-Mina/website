@@ -80,8 +80,8 @@ const LandingPage = () => {
               <p className="hero-subtitle">
                 India ka apna smart healthcare management platform. Track medicines, monitor heart rate, and get AI insights—all in one place.
               </p>
-              <a href="https://github.com/Kalpesh-Mina/website/releases/download/v1.0.0/health-grow.apk" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}>
-                Download Now
+              <a href="https://github.com/Kalpesh-Mina/website/releases/latest/download/v1.0.0/health-grow.apk" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}>
+                Download Health Grow
               </a>
             </div>
             <div className="hero-image-container">
