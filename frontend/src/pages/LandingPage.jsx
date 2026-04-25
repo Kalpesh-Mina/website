@@ -261,6 +261,7 @@ const LandingPage = () => {
             <div className="footer-brand">
               <img src={logo} alt="Health Grow Logo" className="footer-logo" />
               <p>Health is the biggest wealth</p>
+              <p style={{ marginTop: '0.5rem', color: '#0EA5E9', fontWeight: '600', letterSpacing: '0.5px', textTransform: 'uppercase', fontSize: '0.9rem' }}>A Product of KP Ventures</p>
             </div>
             <div className="footer-links">
               <a href="#medicine" className="footer-link">Features</a>

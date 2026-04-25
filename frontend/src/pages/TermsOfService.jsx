@@ -143,7 +143,8 @@ const TermsOfService = () => {
 
             {/* Simple Footer */}
             <footer className="legal-footer">
-                © 2026 KP Ventures. All rights reserved. Made with ❤️ in India
+                <p>© 2026 KP Ventures. All rights reserved. Made with ❤️ in India</p>
+                <p style={{ marginTop: '0.5rem', opacity: 0.8, fontSize: '0.9rem' }}>A Product of KP Ventures</p>
             </footer>
         </div>
     );
