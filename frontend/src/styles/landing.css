@@ -195,6 +195,42 @@ h6 {
   object-fit: cover;
 }
 
+/* Download Sticker */
+.download-sticker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: max-content;
+  animation: bounceSticker 2s infinite;
+}
+
+.sticker-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.sticker-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+  background: var(--bg-pure-white);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+@keyframes bounceSticker {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* Social Proof Banner */
 .social-proof-banner {
   background: #F8FAFC;
@@ -402,6 +438,10 @@ h6 {
 
   .hero-content {
     margin: 0 auto;
+  }
+
+  .download-sticker {
+    margin: 1.5rem auto 0;
   }
 
   .feature-mockup {

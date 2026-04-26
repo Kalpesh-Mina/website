@@ -83,6 +83,10 @@ const LandingPage = () => {
               <a href="https://github.com/Kalpesh-Mina/website/releases/download/V3.00/Health-Grow.apk" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}>
                 Download Health Grow
               </a>
+              <div className="download-sticker">
+                <span className="sticker-icon">👆</span>
+                <span className="sticker-text">Click to start download</span>
+              </div>
             </div>
             <div className="hero-image-container">
               <video
