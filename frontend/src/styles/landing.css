@@ -444,11 +444,71 @@ h6 {
 }
 
 .reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
   gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.reviews-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal Carousel Layout */
+.reviews-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 1rem 0.25rem 1.25rem;
+  flex: 1;
+}
+
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+
+.reviews-track .review-card {
+  flex: 0 0 300px;
+  min-height: 220px;
+}
+
+/* Carousel nav buttons */
+.carousel-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(14, 165, 233, 0.3);
+  background: var(--bg-pure-white);
+  color: var(--primary-cyan);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.12);
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: var(--primary-cyan);
+  color: white;
+  border-color: var(--primary-cyan);
+  transform: scale(1.1);
 }
 
 .review-card {
@@ -722,8 +782,18 @@ h6 {
     margin: 1.5rem auto 0;
   }
 
-  .reviews-grid {
-    grid-template-columns: 1fr;
+  .reviews-carousel-wrapper {
+    gap: 0.4rem;
+  }
+
+  .reviews-track .review-card {
+    flex: 0 0 270px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 
   .rating-summary {

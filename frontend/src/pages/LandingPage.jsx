@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import {
@@ -14,9 +14,61 @@ import aiMockup from '../assets/claudy_ai_mockup.png';
 import reportMockup from '../assets/report_store_mockup.png';
 import '../styles/landing.css';
 
+const REVIEWS = [
+  {
+    name: "Priya Sharma",
+    city: "Mumbai, Maharashtra",
+    avatar: "PS",
+    rating: 5,
+    date: "March 2026",
+    review: "Ekdum mast app hai! Medicine reminders ne meri life badal di. Ab kabhi dose miss nahi hoti. Bahut easy to use hai aur design bhi kaafi sundar hai."
+  },
+  {
+    name: "Rahul Verma",
+    city: "New Delhi",
+    avatar: "RV",
+    rating: 5,
+    date: "April 2026",
+    review: "Heart rate monitor feature is amazing! Doctor ne bola tha apna BP track karo, yeh app perfect hai uske liye. AI health assistant bhi bohot helpful hai reports samjhane mein."
+  },
+  {
+    name: "Ananya Iyer",
+    city: "Bengaluru, Karnataka",
+    avatar: "AI",
+    rating: 5,
+    date: "April 2026",
+    review: "I uploaded my blood test reports and the AI explained everything in simple English. It's like having a doctor friend available 24/7. Highly recommend to everyone!"
+  },
+  {
+    name: "Suresh Patel",
+    city: "Ahmedabad, Gujarat",
+    avatar: "SP",
+    rating: 4,
+    date: "February 2026",
+    review: "Maro favourite health app chhe. Medicine reminder ane report store banne features superb chhe. Family na badhane install karavi didhu che. Khub sari app!"
+  },
+  {
+    name: "Kavitha Reddy",
+    city: "Hyderabad, Telangana",
+    avatar: "KR",
+    rating: 5,
+    date: "March 2026",
+    review: "My mother is diabetic and this app helps her track everything beautifully. The reminders work even without internet. Best health app I've used so far!"
+  },
+  {
+    name: "Arjun Mehta",
+    city: "Pune, Maharashtra",
+    avatar: "AM",
+    rating: 5,
+    date: "April 2026",
+    review: "Security aur privacy ke mamle mein full marks. Mera data safe hai aur app ek dum smooth chalta hai. Made in India with quality — proud feeling aati hai!"
+  }
+];
+
 const LandingPage = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const reviewsRef = useRef(null);
 
   const scrollToGetStarted = () => {
     document.getElementById('get-started-form')?.scrollIntoView({
@@ -31,6 +83,51 @@ const LandingPage = () => {
       setEmail('');
       setTimeout(() => setSubmitted(false), 5000);
     }
+  };
+
+  // Auto-scroll reviews carousel via requestAnimationFrame
+  useEffect(() => {
+    const el = reviewsRef.current;
+    if (!el) return;
+    let animId;
+    let paused = false;
+
+    const tick = () => {
+      if (!paused) {
+        // Seamless infinite loop: jump back by half when we reach the clone
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) {
+          el.scrollLeft -= half;
+        } else {
+          el.scrollLeft += 0.6;
+        }
+      }
+      animId = requestAnimationFrame(tick);
+    };
+
+    animId = requestAnimationFrame(tick);
+
+    const pause  = () => { paused = true; };
+    const resume = () => { paused = false; };
+
+    el.addEventListener('mouseenter', pause);
+    el.addEventListener('mouseleave', resume);
+    el.addEventListener('touchstart', pause, { passive: true });
+    el.addEventListener('touchend',   resume);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      el.removeEventListener('mouseenter', pause);
+      el.removeEventListener('mouseleave', resume);
+      el.removeEventListener('touchstart', pause);
+      el.removeEventListener('touchend',   resume);
+    };
+  }, []);
+
+  const scrollReviews = (dir) => {
+    const el = reviewsRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 320, behavior: 'smooth' });
   };
 
   const howItWorks = [
@@ -133,13 +230,84 @@ const LandingPage = () => {
       {/* Social Proof Banner */}
       <div className="social-proof-banner">
         <div className="container">
-          <span>Proudly Made in India 🇮🇳</span>
+          <span>Proudly Made in India ❤️</span>
           <span>•</span>
           <span>100% Private & Secure 🔒</span>
           <span>•</span>
           <span>AI-Powered Insights ⚡</span>
         </div>
       </div>
+
+      {/* Indian User Reviews Section */}
+      <section className="reviews-section">
+        <div className="container">
+          <div className="section-header">
+            <div className="reviews-badge">⭐ User Reviews</div>
+            <h2 className="text-navy">Loved Across India ❤️</h2>
+            <p>Real reviews from real Health Grow users</p>
+          </div>
+
+          {/* Carousel Controls */}
+          <div className="reviews-carousel-wrapper">
+            <button className="carousel-btn carousel-btn-prev" onClick={() => scrollReviews(-1)} aria-label="Previous review">&#8592;</button>
+            <div className="reviews-track" ref={reviewsRef}>
+              {/* Original set */}
+              {REVIEWS.map((review, idx) => (
+                <div key={`a-${idx}`} className="review-card">
+                  <div className="review-header">
+                    <div className="reviewer-avatar">{review.avatar}</div>
+                    <div className="reviewer-info">
+                      <h4 className="reviewer-name">{review.name}</h4>
+                      <span className="reviewer-city">📍 {review.city}</span>
+                    </div>
+                    <div className="review-verified">✓ Verified</div>
+                  </div>
+                  <div className="review-stars">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className={`review-star ${i < review.rating ? 'filled' : 'empty'}`}>★</span>
+                    ))}
+                    <span className="review-date">{review.date}</span>
+                  </div>
+                  <p className="review-text">"{review.review}"</p>
+                </div>
+              ))}
+              {/* Cloned set for seamless loop */}
+              {REVIEWS.map((review, idx) => (
+                <div key={`b-${idx}`} className="review-card" aria-hidden="true">
+                  <div className="review-header">
+                    <div className="reviewer-avatar">{review.avatar}</div>
+                    <div className="reviewer-info">
+                      <h4 className="reviewer-name">{review.name}</h4>
+                      <span className="reviewer-city">📍 {review.city}</span>
+                    </div>
+                    <div className="review-verified">✓ Verified</div>
+                  </div>
+                  <div className="review-stars">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className={`review-star ${i < review.rating ? 'filled' : 'empty'}`}>★</span>
+                    ))}
+                    <span className="review-date">{review.date}</span>
+                  </div>
+                  <p className="review-text">"{review.review}"</p>
+                </div>
+              ))}
+            </div>
+            <button className="carousel-btn carousel-btn-next" onClick={() => scrollReviews(1)} aria-label="Next review">&#8594;</button>
+          </div>
+          {/* Overall Rating Summary */}
+          <div className="rating-summary">
+            <div className="rating-big-score">4.8</div>
+            <div className="rating-summary-right">
+              <div className="rating-stars-large">
+                {'★★★★★'.split('').map((s, i) => (
+                  <span key={i} className="star-large filled">{s}</span>
+                ))}
+              </div>
+              <p className="rating-summary-text">Based on <strong>500+ reviews</strong> from verified users</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Feature 1: Medicine Reminders */}
       <section id="medicine" className="feature-section">
@@ -227,99 +395,6 @@ const LandingPage = () => {
                 <p className="step-description">{step.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Indian User Reviews Section */}
-      <section className="reviews-section">
-        <div className="container">
-          <div className="section-header">
-            <div className="reviews-badge">⭐ User Reviews</div>
-            <h2 className="text-navy">Loved Across India 🇮🇳</h2>
-            <p>Real reviews from real Health Grow users</p>
-          </div>
-          <div className="reviews-grid">
-            {[
-              {
-                name: "Priya Sharma",
-                city: "Mumbai, Maharashtra",
-                avatar: "PS",
-                rating: 5,
-                date: "March 2026",
-                review: "Ekdum mast app hai! Medicine reminders ne meri life badal di. Ab kabhi dose miss nahi hoti. Bahut easy to use hai aur design bhi kaafi sundar hai."
-              },
-              {
-                name: "Rahul Verma",
-                city: "New Delhi",
-                avatar: "RV",
-                rating: 5,
-                date: "April 2026",
-                review: "Heart rate monitor feature is amazing! Doctor ne bola tha apna BP track karo, yeh app perfect hai uske liye. AI health assistant bhi bohot helpful hai reports samjhane mein."
-              },
-              {
-                name: "Ananya Iyer",
-                city: "Bengaluru, Karnataka",
-                avatar: "AI",
-                rating: 5,
-                date: "April 2026",
-                review: "I uploaded my blood test reports and the AI explained everything in simple English. It's like having a doctor friend available 24/7. Highly recommend to everyone!"
-              },
-              {
-                name: "Suresh Patel",
-                city: "Ahmedabad, Gujarat",
-                avatar: "SP",
-                rating: 4,
-                date: "February 2026",
-                review: "Maro favourite health app chhe. Medicine reminder ane report store banne features superb chhe. Family na badhane install karavi didhu che. Khub sari app!"
-              },
-              {
-                name: "Kavitha Reddy",
-                city: "Hyderabad, Telangana",
-                avatar: "KR",
-                rating: 5,
-                date: "March 2026",
-                review: "My mother is diabetic and this app helps her track everything beautifully. The reminders work even without internet. Best health app I've used so far!"
-              },
-              {
-                name: "Arjun Mehta",
-                city: "Pune, Maharashtra",
-                avatar: "AM",
-                rating: 5,
-                date: "April 2026",
-                review: "Security aur privacy ke mamle mein full marks. Mera data safe hai aur app ek dum smooth chalta hai. Made in India with quality — proud feeling aati hai!"
-              }
-            ].map((review, idx) => (
-              <div key={idx} className="review-card">
-                <div className="review-header">
-                  <div className="reviewer-avatar">{review.avatar}</div>
-                  <div className="reviewer-info">
-                    <h4 className="reviewer-name">{review.name}</h4>
-                    <span className="reviewer-city">📍 {review.city}</span>
-                  </div>
-                  <div className="review-verified">✓ Verified</div>
-                </div>
-                <div className="review-stars">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`review-star ${i < review.rating ? 'filled' : 'empty'}`}>★</span>
-                  ))}
-                  <span className="review-date">{review.date}</span>
-                </div>
-                <p className="review-text">"{review.review}"</p>
-              </div>
-            ))}
-          </div>
-          {/* Overall Rating Summary */}
-          <div className="rating-summary">
-            <div className="rating-big-score">4.8</div>
-            <div className="rating-summary-right">
-              <div className="rating-stars-large">
-                {'★★★★★'.split('').map((s, i) => (
-                  <span key={i} className="star-large filled">{s}</span>
-                ))}
-              </div>
-              <p className="rating-summary-text">Based on <strong>500+ reviews</strong> from verified users</p>
-            </div>
           </div>
         </div>
       </section>
