@@ -124,11 +124,6 @@ const LandingPage = () => {
     };
   }, []);
 
-  const scrollReviews = (dir) => {
-    const el = reviewsRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * 320, behavior: 'smooth' });
-  };
 
   const howItWorks = [
     {
@@ -247,10 +242,8 @@ const LandingPage = () => {
             <p>Real reviews from real Health Grow users</p>
           </div>
 
-          {/* Carousel Controls */}
-          <div className="reviews-carousel-wrapper">
-            <button className="carousel-btn carousel-btn-prev" onClick={() => scrollReviews(-1)} aria-label="Previous review">&#8592;</button>
-            <div className="reviews-track" ref={reviewsRef}>
+          {/* Reviews Track */}
+          <div className="reviews-track" ref={reviewsRef}>
               {/* Original set */}
               {REVIEWS.map((review, idx) => (
                 <div key={`a-${idx}`} className="review-card">
@@ -291,8 +284,6 @@ const LandingPage = () => {
                   <p className="review-text">"{review.review}"</p>
                 </div>
               ))}
-            </div>
-            <button className="carousel-btn carousel-btn-next" onClick={() => scrollReviews(1)} aria-label="Next review">&#8594;</button>
           </div>
           {/* Overall Rating Summary */}
           <div className="rating-summary">

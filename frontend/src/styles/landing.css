@@ -456,24 +456,15 @@ h6 {
   display: none;
 }
 
-/* Horizontal Carousel Layout */
-.reviews-carousel-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
 .reviews-track {
   display: flex;
   gap: 1.25rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 1rem 0.25rem 1.25rem;
-  flex: 1;
+  padding: 1rem 0.25rem 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .reviews-track::-webkit-scrollbar {
@@ -485,31 +476,6 @@ h6 {
   min-height: 220px;
 }
 
-/* Carousel nav buttons */
-.carousel-btn {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid rgba(14, 165, 233, 0.3);
-  background: var(--bg-pure-white);
-  color: var(--primary-cyan);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.12);
-  z-index: 2;
-}
-
-.carousel-btn:hover {
-  background: var(--primary-cyan);
-  color: white;
-  border-color: var(--primary-cyan);
-  transform: scale(1.1);
-}
 
 .review-card {
   background: var(--bg-soft-blue);
@@ -782,19 +748,14 @@ h6 {
     margin: 1.5rem auto 0;
   }
 
-  .reviews-carousel-wrapper {
-    gap: 0.4rem;
-  }
-
   .reviews-track .review-card {
-    flex: 0 0 270px;
+    flex: 0 0 85vw;
   }
 
-  .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
+  .reviews-track {
+    padding: 1rem 1rem 1.5rem;
   }
+
 
   .rating-summary {
     flex-direction: column;
@@ -857,5 +818,23 @@ h6 {
 
   .final-cta-section h2 {
     font-size: clamp(1.8rem, 6vw, 2.2rem);
+  }
+
+  /* Reviews on mobile */
+  .reviews-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .reviewer-name {
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+
+  .review-card {
+    padding: 1.25rem;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
   }
 }
